@@ -58,3 +58,48 @@ model PasswordResetToken {
 
   @@index([userId])
 }
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  DEAD
+}
+
+model Job {
+  id             String    @id @default(cuid())
+  type           String
+  payload        Json
+  status         JobStatus @default(PENDING)
+  attempts       Int       @default(0)
+  maxAttempts    Int       @default(3)
+  lastError      String?
+  idempotencyKey String    @unique
+  runAt          DateTime  @default(now())
+  startedAt      DateTime?
+  finishedAt     DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  logs JobLog[]
+
+  @@index([status, runAt])
+  @@index([idempotencyKey])
+  @@index([status])
+}
+
+model JobLog {
+  id         String    @id @default(cuid())
+  jobId      String
+  attempt    Int
+  status     String
+  error      String?
+  startedAt  DateTime
+  finishedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  job Job @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([jobId])
+}
