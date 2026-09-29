@@ -1,0 +1,36 @@
+{
+  "name": "auth-slice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tokens-to-css.cjs",
+  "scripts": {
+    "dev": "next dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.11.3",
+    "@prisma/client": "6.19.3",
+    "@upstash/ratelimit": "^2.0.8",
+    "bcryptjs": "^2.4.3",
+    "ioredis": "^6.0.0",
+    "next": "^16.3.4",
+    "next-auth": "^5.0.0-beta.32",
+    "nodemailer": "^10.0.0",
+    "prisma": "6.19.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^26.4.1",
+    "@types/nodemailer": "^8.0.1",
+    "@types/react": "19.2.18",
+    "playwright": "^1.63.0",
+    "typescript": "^7.0.2"
+  }
+}
